@@ -4,6 +4,4 @@ services:
   name: mtproto-proxy
   env: docker
   plan: free
-  ports:
-  - port: 8080
-    autoDeploy: true
+  autoDeploy: true
