@@ -5,6 +5,7 @@ import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 PORT = int(os.environ.get("PORT", 8000))
+PROXY_PORT = 9000
 
 def gen_secret():
     chars = "0123456789abcdef"
@@ -13,10 +14,9 @@ def gen_secret():
 SECRET = gen_secret()
 
 print("MTProto Proxy Started 🗿")
-print("PORT:", PORT)
+print("PORT:", PROXY_PORT)
 print("SECRET:", SECRET)
 
-# تحميل ملفات تيليغرام
 os.system("curl -s https://core.telegram.org/getProxySecret -o /app/MTProxy/proxy-secret")
 os.system("curl -s https://core.telegram.org/getProxyConfig -o /app/MTProxy/proxy-multi.conf")
 
@@ -25,9 +25,9 @@ def start_proxy():
         "/app/MTProxy/objs/bin/mtproto-proxy",
         "-u","nobody",
         "-p","8888",
-        "-H",str(PORT),
+        "-H",str(PROXY_PORT),
         "-S",SECRET,
-        "-M","5",
+        "-M","1",
         "--aes-pwd","/app/MTProxy/proxy-secret",
         "/app/MTProxy/proxy-multi.conf"
     ])
