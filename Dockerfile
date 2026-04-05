@@ -1,12 +1,19 @@
-FROM python:3.10
+FROM debian:stable-slim
 
 WORKDIR /app
 
-RUN apt update && apt install -y wget
+RUN apt update && apt install -y wget tar ca-certificates
 
-RUN wget https://github.com/9seconds/mtg/releases/latest/download/mtg-linux-amd64 -O mtg
-RUN chmod +x mtg
+# تحميل mtg
+RUN wget https://github.com/9seconds/mtg/releases/download/v2.2.7/mtg-2.2.7-linux-amd64.tar.gz
 
-COPY app.py .
+# فك الضغط
+RUN tar -xzf mtg-2.2.7-linux-amd64.tar.gz
 
-CMD ["python","app.py"]
+# نقل البرنامج
+RUN mv mtg /usr/local/bin/mtg
+
+RUN chmod +x /usr/local/bin/mtg
+
+# تشغيل البروكسي
+CMD sh -c 'SECRET=$(head -c 16 /dev/urandom | xxd -ps); mtg run --bind 0.0.0.0:8080 --secret $SECRET --domain www.cloudflare.com'
