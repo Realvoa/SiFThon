@@ -22,6 +22,5 @@ subprocess.run([
 "-H",PORT,
 "-S",SECRET,
 "--aes-pwd","/app/MTProxy/proxy-secret",
-"/app/MTProxy/proxy-multi.conf",
-"-M","1"
+"/app/MTProxy/proxy-multi.conf"
 ])
