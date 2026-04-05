@@ -2,15 +2,10 @@ FROM python:3.10
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y git build-essential curl
+RUN apt update && apt install -y wget
 
-# تحميل MTProxy
-RUN git clone https://github.com/TelegramMessenger/MTProxy.git
-
-WORKDIR /app/MTProxy
-RUN make
-
-WORKDIR /app
+RUN wget https://github.com/9seconds/mtg/releases/latest/download/mtg-linux-amd64 -O mtg
+RUN chmod +x mtg
 
 COPY app.py .
 
