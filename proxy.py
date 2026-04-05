@@ -15,6 +15,10 @@ print("PORT:", PORT)
 print("SECRET:", SECRET)
 print("================================")
 
+# تحميل ملفات Telegram
+os.system("curl -s https://core.telegram.org/getProxySecret -o /app/MTProxy/proxy-secret")
+os.system("curl -s https://core.telegram.org/getProxyConfig -o /app/MTProxy/proxy-multi.conf")
+
 subprocess.run([
 "/app/MTProxy/objs/bin/mtproto-proxy",
 "-u","nobody",
