@@ -10,8 +10,8 @@ RUN wget https://github.com/9seconds/mtg/releases/download/v2.2.7/mtg-2.2.7-linu
 # فك الضغط
 RUN tar -xzf mtg-2.2.7-linux-amd64.tar.gz
 
-# نقل البرنامج
-RUN mv mtg /usr/local/bin/mtg
+# نقل الملف من داخل المجلد
+RUN mv mtg-2.2.7-linux-amd64/mtg /usr/local/bin/mtg
 
 RUN chmod +x /usr/local/bin/mtg
 
