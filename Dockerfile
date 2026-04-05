@@ -1,8 +1,17 @@
-FROM telegrammessenger/proxy:latest
+FROM python:3.10
 
-RUN apt-get update && apt-get install -y xxd
+WORKDIR /app
 
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+RUN apt-get update && apt-get install -y git build-essential
 
-CMD ["/start.sh"]
+# تحميل MTProto الرسمي
+RUN git clone https://github.com/TelegramMessenger/MTProxy.git
+
+WORKDIR /app/MTProxy
+RUN make
+
+WORKDIR /app
+
+COPY proxy.py /app/proxy.py
+
+CMD ["python","proxy.py"]
