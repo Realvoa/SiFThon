@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: mtproto-proxy
+    env: docker
+    ports:
+      - port: 443
+        protocol: tcp
