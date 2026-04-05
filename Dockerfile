@@ -1,8 +1,8 @@
-FROM python:3.10
+FROM telegrammessenger/proxy:latest
 
-WORKDIR /app
-COPY . .
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-RUN pip install requests
+EXPOSE 443
 
-CMD ["python", "sif.py"]
+CMD ["/start.sh"]
