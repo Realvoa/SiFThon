@@ -4,6 +4,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y git build-essential curl
 
+# تحميل MTProxy
 RUN git clone https://github.com/TelegramMessenger/MTProxy.git
 
 WORKDIR /app/MTProxy
@@ -11,6 +12,6 @@ RUN make
 
 WORKDIR /app
 
-COPY proxy.py .
+COPY app.py .
 
-CMD ["python","proxy.py"]
+CMD ["python","app.py"]
