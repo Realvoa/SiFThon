@@ -1,10 +1,10 @@
 #!/bin/bash
 
+PORT=${PORT:-8080}
+
 SECRET=dd$(head -c 16 /dev/urandom | xxd -ps)
 
-echo "================================="
-echo "MTProto Proxy Started "
-echo "SECRET: $SECRET"
-echo "================================="
+echo "MTProto Proxy Started"
+echo "Secret: $SECRET"
 
-./proxy-multi -p 8888 -H 443 -S $SECRET
+./proxy-multi -p 8888 -H $PORT -S $SECRET
