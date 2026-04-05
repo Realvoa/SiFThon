@@ -2,7 +2,7 @@ FROM python:3.10
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y git build-essential
+RUN apt-get update && apt-get install -y git build-essential curl
 
 RUN git clone https://github.com/TelegramMessenger/MTProxy.git
 
